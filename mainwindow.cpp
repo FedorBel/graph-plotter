@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->plot->xAxis->setLabel("t, [s]");
     ui->plot->legend->setVisible(true);
     ui->plot->graph(0)->setName("U, [v]");
+    ui->plot->setInteraction(QCP::iSelectPlottables, true);
 
     plotFakeData();
 }

@@ -11,24 +11,24 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Qt Serial Plotter</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QCustomPlot" name="plot" native="true">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>751</width>
-      <height>381</height>
+      <x>70</x>
+      <y>70</y>
+      <width>661</width>
+      <height>331</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_clear">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>450</y>
+      <x>410</x>
+      <y>420</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -40,8 +40,8 @@
    <widget class="QPushButton" name="btn_zoomFull">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>450</y>
+      <x>310</x>
+      <y>420</y>
       <width>75</width>
       <height>23</height>
      </rect>
