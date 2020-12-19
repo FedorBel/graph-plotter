@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->plot->graph(0)->setScatterStyle(QCPScatterStyle::ssDisc);
     ui->plot->graph(0)->setLineStyle(QCPGraph::lsLine);
     ui->plot->xAxis->setLabel("t, [s]");
+    ui->plot->legend->setVisible(true);
+    ui->plot->graph(0)->setName("U, [v]");
 
     plotFakeData();
 }
