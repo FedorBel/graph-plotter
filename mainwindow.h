@@ -15,7 +15,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void addPoint(double x, double y);
+    void clearData();
+    void plot();
+
 private:
     Ui::MainWindow *ui;
+
+    QVector<double> qv_x;
+    QVector<double> qv_y;
 };
 #endif // MAINWINDOW_H
