@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 //    ui->plot->setInteraction(QCP::iSelectPlottables, true);
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                      QCP::iSelectLegend | QCP::iSelectPlottables);
+    fixGraph = false;
     ui->plot->addGraph();
     ui->plot->graph(0)->setScatterStyle(QCPScatterStyle::ssDisc);
     ui->plot->graph(0)->setLineStyle(QCPGraph::lsLine);
@@ -211,4 +212,11 @@ void MainWindow::mouseWheel()
     ui->plot->axisRect()->setRangeZoom(ui->plot->yAxis->orientation());
   else
     ui->plot->axisRect()->setRangeZoom(Qt::Horizontal|Qt::Vertical);
+}
+
+void MainWindow::on_checkBox_fixGraph_stateChanged(int arg1)
+{
+    fixGraph = arg1;
+    ui->plot->setInteraction(QCP::iRangeDrag, !fixGraph);
+    ui->plot->setInteraction(QCP::iRangeZoom, !fixGraph);
 }

@@ -63,6 +63,22 @@
      <string>Use Tracer</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox_fixGraph">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>410</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fix Graph</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

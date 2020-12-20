@@ -34,6 +34,8 @@ private slots:
 
     void on_checkBox_useTracer_stateChanged(int arg1);
 
+    void on_checkBox_fixGraph_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
 
@@ -42,6 +44,7 @@ private:
 
     bool enAutoScale;
     bool enTracer;
+    bool fixGraph;
 
     QCPItemTracer *tracer;
 };
