@@ -52,7 +52,20 @@ MainWindow::MainWindow(QWidget *parent)
     tracer->setVisible(false);
     enTracer = false;
 
-    plotFakeData();
+    // Plot fake data for debug
+//    plotFakeData();
+
+    // Real-time plotting setup
+
+    QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
+    timeTicker->setTimeFormat("%h:%m:%s");
+    ui->plot->xAxis->setTicker(timeTicker);
+    ui->plot->axisRect()->setupFullAxesBox();
+    ui->plot->yAxis->setRange(-1.2, 1.2);
+
+    // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
+    connect(&dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
+    dataTimer.start(0); // Interval 0 means to refresh as fast as possible
 
     // Serial communication setup
 
@@ -299,7 +312,28 @@ void MainWindow::writeData(const QByteArray &data)
 
 void MainWindow::readData()
 {
-    const QByteArray data = m_serial->readAll();
+    QByteArray data = m_serial->readAll();
+
+    qDebug() << "Input data:\n" << data;
+
+
+    QString receivedData = QString::fromUtf8(data.toStdString().c_str());
+
+    int startPos = receivedData.indexOf('\n') + 1;
+    receivedData = receivedData.remove(0, startPos);
+    int endPos = receivedData.indexOf('\r');
+    qDebug() << "endPos = " << endPos;
+    if (endPos == -1)
+    {
+        qDebug() << "End pos == 1";
+        return;
+    }
+    receivedData = receivedData.mid(0, endPos);
+    qDebug() << "Data after fix: " << receivedData;
+
+    currentValue = receivedData.toDouble();
+    qDebug() << "Input num = " << currentValue;
+
     ui->console->putData(data);
 }
 
@@ -325,4 +359,41 @@ void MainWindow::initActionsConnections()
 void MainWindow::showStatusMessage(const QString &message)
 {
     m_status->setText(message);
+}
+
+void MainWindow::realtimeDataSlot()
+{
+    static QTime time(QTime::currentTime());
+    // calculate two new data points:
+    double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
+    static double lastPointKey = 0;
+    if (key-lastPointKey > 0.002) // at most add point every 2 ms
+    {
+        // add data to lines:
+        ui->plot->graph(0)->addData(key, currentValue);
+        // rescale value (vertical) axis to fit the current data:
+        //ui->customPlot->graph(0)->rescaleValueAxis();
+        //ui->customPlot->graph(1)->rescaleValueAxis(true);
+        lastPointKey = key;
+    }
+    // make key axis range scroll with the data (at a constant range size of 8):
+    ui->plot->xAxis->setRange(key, 8, Qt::AlignRight);
+    qDebug() << "qv_y size = "<<qv_y.size();
+    ui->plot->yAxis->rescale();
+    ui->plot->replot();
+
+    // calculate frames per second:
+    static double lastFpsKey;
+    static int frameCount;
+    ++frameCount;
+    if (key-lastFpsKey > 2) // average fps over 2 seconds
+    {
+        ui->statusBar->showMessage(
+                    QString("%1 FPS, Total Data points: %2")
+                    .arg(frameCount/(key-lastFpsKey), 0, 'f', 0)
+                    .arg(ui->plot->graph(0)->data()->size())
+                    , 0);
+        lastFpsKey = key;
+        frameCount = 0;
+    }
 }

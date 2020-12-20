@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <qcustomplot/qcustomplot.h>
 #include <QSerialPort>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,6 +37,9 @@ private slots:
     void mousePress();
     void mouseWheel();
 
+    // Real-time plotting
+    void realtimeDataSlot();
+
     // Serial
     void openSerialPort();
     void closeSerialPort();
@@ -66,6 +70,10 @@ private:
     bool fixGraph;
 
     QCPItemTracer *tracer;
+
+    // Real-time plotting
+    QTimer dataTimer;
+    double currentValue = 0;
 
     // Serial
     QLabel *m_status = nullptr;
