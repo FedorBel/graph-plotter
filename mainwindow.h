@@ -3,10 +3,14 @@
 
 #include <QMainWindow>
 #include <qcustomplot/qcustomplot.h>
+#include <QSerialPort>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class Console;
+class SettingsDialog;
 
 class MainWindow : public QMainWindow
 {
@@ -23,6 +27,7 @@ public:
     void autoScale();
 
 private slots:
+    // Plot
     void on_btn_zoomFull_clicked();
     void graphClicked(QCPAbstractPlottable *plottable, int dataIndex);
     void slotMousePress(QMouseEvent * event);
@@ -31,12 +36,26 @@ private slots:
     void mousePress();
     void mouseWheel();
 
+    // Serial
+    void openSerialPort();
+    void closeSerialPort();
+    void about();
+    void writeData(const QByteArray &data);
+    void readData();
 
+    void handleError(QSerialPort::SerialPortError error);
+
+    // Other
     void on_checkBox_useTracer_stateChanged(int arg1);
 
     void on_checkBox_fixGraph_stateChanged(int arg1);
 
 private:
+    void initActionsConnections();
+
+private:
+    void showStatusMessage(const QString &message);
+
     Ui::MainWindow *ui;
 
     QVector<double> qv_x;
@@ -47,5 +66,10 @@ private:
     bool fixGraph;
 
     QCPItemTracer *tracer;
+
+    // Serial
+    QLabel *m_status = nullptr;
+    SettingsDialog *m_settings = nullptr;
+    QSerialPort *m_serial = nullptr;
 };
 #endif // MAINWINDOW_H
