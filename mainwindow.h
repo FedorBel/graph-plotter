@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <qcustomplot/qcustomplot.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +24,7 @@ public:
 
 private slots:
     void on_btn_zoomFull_clicked();
+    void graphClicked(QCPAbstractPlottable *plottable, int dataIndex);
 
 private:
     Ui::MainWindow *ui;

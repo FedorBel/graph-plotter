@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
     QCPTextElement *title = new QCPTextElement(ui->plot, "Graph Example", QFont("sans", 17, QFont::Bold));
     ui->plot->plotLayout()->addElement(0, 0, title);
 
+    // connect slot that shows a message in the status bar when a graph is clicked:
+    connect(ui->plot, SIGNAL(plottableClick(QCPAbstractPlottable*,int,QMouseEvent*)), this, SLOT(graphClicked(QCPAbstractPlottable*,int)));
+
     plotFakeData();
 }
 
@@ -75,4 +78,14 @@ void MainWindow::on_btn_zoomFull_clicked()
 {
     autoScale();
     plot();
+}
+
+void MainWindow::graphClicked(QCPAbstractPlottable *plottable, int dataIndex)
+{
+    // since we know we only have QCPGraphs in the plot, we can immediately access interface1D()
+    // usually it's better to first check whether interface1D() returns non-zero, and only then use it.
+    double dataValue = plottable->interface1D()->dataMainValue(dataIndex);
+    double dataTimeStamp = plottable->interface1D()->dataMainKey(dataIndex);
+    QString message = QString("Clicked on graph '%1' at data point #%2 with coords [%3, %4].").arg(plottable->name()).arg(dataIndex).arg(dataValue).arg(dataTimeStamp);
+    ui->statusBar->showMessage(message, 10000);
 }
