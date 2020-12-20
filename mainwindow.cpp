@@ -17,6 +17,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->plot->legend->setVisible(true);
     ui->plot->graph(0)->setName("U, [v]");
 
+    ui->plot->plotLayout()->insertRow(0);
+    QCPTextElement *title = new QCPTextElement(ui->plot, "Graph Example", QFont("sans", 17, QFont::Bold));
+    ui->plot->plotLayout()->addElement(0, 0, title);
+
     plotFakeData();
 }
 
