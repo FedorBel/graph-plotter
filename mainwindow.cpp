@@ -55,10 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     plotFakeData();
 
     // Serial communication setup
-//    ui->console->set
-//    ui->console->setEnabled(false);
-//    setCentralWidget(ui->console);
-//    ui->console->setEnabled(0);
+
     ui->console->setEnabled(false);
 
     ui->actionConnect->setEnabled(true);
@@ -72,9 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(m_serial, &QSerialPort::errorOccurred, this, &MainWindow::handleError);
 
-//! [2]
     connect(m_serial, &QSerialPort::readyRead, this, &MainWindow::readData);
-//! [2]
     connect(ui->console, &QConsole::getData, this, &MainWindow::writeData);
 
 }
@@ -172,8 +167,6 @@ void MainWindow::slotMouseMove(QMouseEvent *event)
 
 void MainWindow::on_checkBox_useTracer_stateChanged(int arg1)
 {
-//    qDebug() << "Use Tracer = " << ui->checkBox_useTracer->isChecked();
-//    enTracer = ui->checkBox_useTracer->isChecked();
     enTracer = arg1;
     qDebug() << "Use Tracer = " << enTracer;
     tracer->setVisible(enTracer);
@@ -279,9 +272,7 @@ void MainWindow::openSerialPort()
         showStatusMessage(tr("Open error"));
     }
 }
-//! [4]
 
-//! [5]
 void MainWindow::closeSerialPort()
 {
     if (m_serial->isOpen())
@@ -292,7 +283,6 @@ void MainWindow::closeSerialPort()
     ui->actionConfigure->setEnabled(true);
     showStatusMessage(tr("Disconnected"));
 }
-//! [5]
 
 void MainWindow::about()
 {
@@ -302,22 +292,17 @@ void MainWindow::about()
                           "using Qt, with a menu bar, toolbars, and a status bar."));
 }
 
-//! [6]
 void MainWindow::writeData(const QByteArray &data)
 {
     m_serial->write(data);
 }
-//! [6]
 
-//! [7]
 void MainWindow::readData()
 {
     const QByteArray data = m_serial->readAll();
     ui->console->putData(data);
 }
-//! [7]
 
-//! [8]
 void MainWindow::handleError(QSerialPort::SerialPortError error)
 {
     if (error == QSerialPort::ResourceError) {
@@ -325,7 +310,6 @@ void MainWindow::handleError(QSerialPort::SerialPortError error)
         closeSerialPort();
     }
 }
-//! [8]
 
 void MainWindow::initActionsConnections()
 {
