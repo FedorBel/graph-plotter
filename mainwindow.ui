@@ -111,6 +111,19 @@
      <string>Debug Console</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox_stopPlotting">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>410</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop plotting</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

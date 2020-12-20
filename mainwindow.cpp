@@ -162,8 +162,14 @@ void MainWindow::slotMousePress(QMouseEvent *event)
         tracer->setGraphKey(coordX);
         ui->plot->replot(); // redraw
 
-        double dataValue = ui->plot->graph(0)->dataMainValue(coordX);
-        double dataTimeStamp = ui->plot->graph(0)->dataMainKey(coordX);
+
+//        double dataTimeStamp = ui->plot->graph(0)->dataMainKey(coordX);
+//        double dataValue = ui->plot->graph(0)->dataMainValue(dataTimeStamp);
+        QPointF temp = tracer->position->coords();
+        double dataValue = temp.y();
+        double dataTimeStamp = temp.x();
+        qDebug() << "dataValue = " << dataValue;
+//        double dataValue = ui->plot->graph(0)->data()->at(dataTimeStamp)->mainValue();
         QString message = QString("Clicked on graph '%1' at data point with coords [%2, %3].").arg(ui->plot->graph(0)->name()).arg(dataTimeStamp).arg(dataValue);
         ui->statusBar->showMessage(message, 0);
     }
@@ -378,7 +384,7 @@ void MainWindow::realtimeDataSlot()
     }
     // make key axis range scroll with the data (at a constant range size of 8):
     ui->plot->xAxis->setRange(key, 8, Qt::AlignRight);
-    qDebug() << "qv_y size = "<<qv_y.size();
+//    qDebug() << "qv_y size = "<<qv_y.size();
     ui->plot->yAxis->rescale();
     ui->plot->replot();
 
@@ -395,5 +401,17 @@ void MainWindow::realtimeDataSlot()
                     , 0);
         lastFpsKey = key;
         frameCount = 0;
+    }
+}
+
+void MainWindow::on_checkBox_stopPlotting_stateChanged(int arg1)
+{
+    if (arg1)
+    {
+        dataTimer.stop();
+    }
+    else
+    {
+        dataTimer.start();
     }
 }

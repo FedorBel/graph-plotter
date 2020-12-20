@@ -54,6 +54,8 @@ private slots:
 
     void on_checkBox_fixGraph_stateChanged(int arg1);
 
+    void on_checkBox_stopPlotting_stateChanged(int arg1);
+
 private:
     void initActionsConnections();
 
