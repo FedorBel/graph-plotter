@@ -27,8 +27,8 @@
    <widget class="QPushButton" name="btn_clear">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>420</y>
+      <x>580</x>
+      <y>410</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -40,14 +40,27 @@
    <widget class="QPushButton" name="btn_zoomFull">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>420</y>
+      <x>490</x>
+      <y>410</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
      <string>Zoom Full</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_useTracer">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>410</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Use Tracer</string>
     </property>
    </widget>
   </widget>

@@ -25,6 +25,14 @@ public:
 private slots:
     void on_btn_zoomFull_clicked();
     void graphClicked(QCPAbstractPlottable *plottable, int dataIndex);
+    void slotMousePress(QMouseEvent * event);
+    void slotMouseMove(QMouseEvent * event);
+    void selectionChanged();
+    void mousePress();
+    void mouseWheel();
+
+
+    void on_checkBox_useTracer_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;
@@ -33,5 +41,8 @@ private:
     QVector<double> qv_y;
 
     bool enAutoScale;
+    bool enTracer;
+
+    QCPItemTracer *tracer;
 };
 #endif // MAINWINDOW_H
