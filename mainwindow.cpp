@@ -9,13 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->plot->setInteraction(QCP::iRangeDrag, true);
     ui->plot->setInteraction(QCP::iRangeZoom, true);
+    ui->plot->setInteraction(QCP::iSelectPlottables, true);
     ui->plot->addGraph();
     ui->plot->graph(0)->setScatterStyle(QCPScatterStyle::ssDisc);
     ui->plot->graph(0)->setLineStyle(QCPGraph::lsLine);
     ui->plot->xAxis->setLabel("t, [s]");
     ui->plot->legend->setVisible(true);
     ui->plot->graph(0)->setName("U, [v]");
-    ui->plot->setInteraction(QCP::iSelectPlottables, true);
 
     plotFakeData();
 }
