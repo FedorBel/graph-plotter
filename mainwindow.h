@@ -81,5 +81,8 @@ private:
     QLabel *m_status = nullptr;
     SettingsDialog *m_settings = nullptr;
     QSerialPort *m_serial = nullptr;
+//    QByteArray serialData;
+    QString serialBuffer = "";
+    bool firstRead = true;
 };
 #endif // MAINWINDOW_H

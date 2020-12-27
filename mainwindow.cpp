@@ -318,29 +318,28 @@ void MainWindow::writeData(const QByteArray &data)
 
 void MainWindow::readData()
 {
-    QByteArray data = m_serial->readAll();
+    QStringList bufferSplit = serialBuffer.split("$");
 
-    qDebug() << "Input data:\n" << data;
-
-
-    QString receivedData = QString::fromUtf8(data.toStdString().c_str());
-
-    int startPos = receivedData.indexOf('\n') + 1;
-    receivedData = receivedData.remove(0, startPos);
-    int endPos = receivedData.indexOf('\r');
-    qDebug() << "endPos = " << endPos;
-    if (endPos == -1)
+    if (bufferSplit.length() < 3)
     {
-        qDebug() << "End pos == 1";
-        return;
+        const QByteArray data = m_serial->readAll();
+        if (firstRead)
+        {
+            firstRead = false;
+            return;
+        }
+        ui->console->putData(data);
+        serialBuffer += QString::fromStdString(data.toStdString());
     }
-    receivedData = receivedData.mid(0, endPos);
-    qDebug() << "Data after fix: " << receivedData;
-
-    currentValue = receivedData.toDouble();
-    qDebug() << "Input num = " << currentValue;
-
-    ui->console->putData(data);
+    else
+    {
+        // bufferSplit[1] is a good data
+        serialBuffer.clear();
+        QString goodData = bufferSplit[1].remove("\r\n");
+        qDebug() << "goodData: " << goodData;
+        currentValue = goodData.toFloat();
+        qDebug() << "value" << currentValue;
+    }
 }
 
 void MainWindow::handleError(QSerialPort::SerialPortError error)
