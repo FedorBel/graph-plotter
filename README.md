@@ -27,6 +27,14 @@ $ git clone https://github.com/FedorBel/qt-serial-plotter.git
 
 To run the program, open [qt-serial-plotter.pro](https://github.com/FedorBel/qt-serial-plotter/blob/master/qt-serial-plotter.pro) with *Qt Creator* and click *Run*.
 
+From microcontroller send this string (without '[]' ):
+
+```
+$[data]\r\n
+```
+
+Exsample program with Arduino UNO:
+
 ## Built With
 
 * [Qt](https://www.qt.io/) - Free and open-source widget toolkit for creating graphical user interfaces
