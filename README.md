@@ -25,7 +25,7 @@ $ git clone https://github.com/FedorBel/qt-serial-plotter.git
 
 ### Usage
 
-To run the program, open [qt-serial-plotter.pro](https://github.com/FedorBel/qt-serial-plotter/blob/master/qt-serial-plotter.pro) with *Qt Creator* and click *Run*.
+To run the program, open [qt-serial-plotter.pro](qt-serial-plotter.pro) with *Qt Creator* and click *Run*.
 
 From microcontroller send this string (without '[]' ):
 
@@ -33,7 +33,7 @@ From microcontroller send this string (without '[]' ):
 $[data]\r\n
 ```
 
-Exsample program with Arduino UNO:
+Exsample program with [Arduino UNO](examples/arduino_example.cpp):
 
 ## Built With
 
