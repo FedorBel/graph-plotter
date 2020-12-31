@@ -1,15 +1,19 @@
 # qt-serial-plotter
 Real-time plotter for serial port data.
 
+<img src="https://github.com/FedorBel/qt-serial-plotter/blob/master/docs/img/plotter-demo.PNG" width="659" height="522"/>
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Dependencies
+
 | Name | Version | 
 |----------------|:---------:|
 | Build system | QMake version 3.1 |
 | Qt | 5.14.0 | 
 | qcustomplot | 2.0.1 | 
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Installing
 
