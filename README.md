@@ -33,7 +33,7 @@ From microcontroller send this string (without '[]' ):
 $[data]\r\n
 ```
 
-Exsample program with [Arduino UNO](examples/arduino_example.cpp):
+Example program with [Arduino UNO](examples/arduino_example.cpp):
 
 ## Built With
 
