@@ -45,7 +45,7 @@ Example program with [Arduino UNO](examples/arduino_example.cpp):
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/FedorBel/qt-serial-plotter/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/FedorBel/graph-plotter/tags). 
 
 ## Authors
 * **Fedor Belyakov** - *Initial work* - [FedorBel](https://github.com/FedorBel)
