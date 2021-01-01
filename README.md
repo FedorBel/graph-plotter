@@ -1,4 +1,4 @@
-# qt-serial-plotter
+# Qt Serial Plotter
 This application is for ploting data from serial port in real-time. Now it runs only from *Qt Creator*.
 
 <img src="https://github.com/FedorBel/qt-serial-plotter/blob/master/docs/img/plotter-demo.PNG" width="659" height="522"/>
