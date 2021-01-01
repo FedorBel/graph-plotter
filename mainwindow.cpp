@@ -64,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->plot->yAxis->setRange(-1.2, 1.2);
 
     // setup a timer that repeatedly calls MainWindow::realtimeDataSlot:
-    connect(&dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
+    // connect(&dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
     dataTimer.start(0); // Interval 0 means to refresh as fast as possible
 
     // Serial communication setup
@@ -339,6 +339,7 @@ void MainWindow::readData()
         qDebug() << "goodData: " << goodData;
         currentValue = goodData.toFloat();
         qDebug() << "value" << currentValue;
+        plotRealTimeData();
     }
 }
 
@@ -366,7 +367,7 @@ void MainWindow::showStatusMessage(const QString &message)
     m_status->setText(message);
 }
 
-void MainWindow::realtimeDataSlot()
+void MainWindow::plotRealTimeData()
 {
     static QTime time(QTime::currentTime());
     // calculate two new data points:

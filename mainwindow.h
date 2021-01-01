@@ -38,7 +38,7 @@ private slots:
     void mouseWheel();
 
     // Real-time plotting
-    void realtimeDataSlot();
+    // void realtimeDataSlot();
 
     // Serial
     void openSerialPort();
@@ -76,6 +76,7 @@ private:
     // Real-time plotting
     QTimer dataTimer;
     double currentValue = 0;
+    void plotRealTimeData();
 
     // Serial
     QLabel *m_status = nullptr;
