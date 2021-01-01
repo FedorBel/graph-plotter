@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Qt Serial Plotter</string>
+   <string>Graph Plotter</string>
   </property>
   <property name="windowIcon">
    <iconset resource="terminal.qrc">
