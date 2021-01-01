@@ -1,6 +1,9 @@
 # Graph Plotter
 This application is for ploting data in real-time. Now it runs only from *Qt Creator*.
 
+Supported communication:
+* serial port.
+
 <img src="https://github.com/FedorBel/qt-serial-plotter/blob/master/docs/img/plotter-demo.PNG" width="659" height="522"/>
 
 ## Getting Started
