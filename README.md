@@ -23,7 +23,7 @@ These instructions will get you a copy of the project up and running on your loc
 Clone the repo
 
 ```
-$ git clone https://github.com/FedorBel/qt-serial-plotter.git
+$ git clone https://github.com/FedorBel/graph-plotter.git
 ```
 
 ### Usage
